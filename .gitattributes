@@ -1,0 +1,4 @@
+# files are stored with LF line-endings (ie. osx)
+*.erl text=input
+.editorconfig text=input
+.gitattributes text=input
