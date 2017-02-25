@@ -14,3 +14,9 @@ bigNumFails() ->
 	% so why not in Erlang ?
 	% BEAM compile fails with
 	% Warning: this expression will fail with a 'badarith' exception
+
+% not a valid function as variable name has to be capital
+% error in erl REPL is `exception error: no function clause matching questions:foo(1)`
+% but import goes through fine. how to catch such issues ?
+foo(x) ->
+	x.

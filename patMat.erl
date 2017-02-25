@@ -1,5 +1,5 @@
 -module(patMat).
--export([xor1/2, xor2/2, maxThree/3, howManyEqual/3]).
+-export([xor1/2, xor2/2, maxThree/3, howManyEqual/3,oneOrTwo/1,rightAge/1]).
 
 xor1(X,X) ->
 	false;
@@ -37,3 +37,14 @@ howManyEqual(_,_,_) ->
 	0.
 
 % TODO: generic versions for howManyEqual (for N arguments) and maxThree (for N arguments)
+
+oneOrTwo(_X) when _X == 1;_X == 2 ->
+	true;
+
+oneOrTwo(_X) ->
+	false.
+
+rightAge(_X) when _X > 16, _X < 35 ->
+	true;
+rightAge(_X) ->
+	false.
