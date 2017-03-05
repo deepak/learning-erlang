@@ -56,3 +56,12 @@ howToWriteMultipleCase() ->
 			 end,
 
 	[P1, P2, P3, P4].
+
+%% cannot have a module called lists as that is an Erlang module (evidently)
+%% so would be nice if erlang had namespaces,
+%% http://erlang.org/pipermail/erlang-questions/2007-September/028892.html
+%% but for ex. Ruby does not have them and it does just fine :-)
+%% compiling such a module gives an error: "Can't load module 'lists' that resides in sticky dir"
+%% check by `code:which(lists).` which gives
+%% "/usr/local/Cellar/erlang/19.2.3/lib/erlang/lib/stdlib-3.2/ebin/lists.beam"
+%% cannot have a method called `max` in a module as well, as that is an Erlang function (BIF)
