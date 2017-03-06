@@ -65,3 +65,21 @@ howToWriteMultipleCase() ->
 %% check by `code:which(lists).` which gives
 %% "/usr/local/Cellar/erlang/19.2.3/lib/erlang/lib/stdlib-3.2/ebin/lists.beam"
 %% cannot have a method called `max` in a module as well, as that is an Erlang function (BIF)
+
+%% TODO: convert this to be like to_lower.
+%% how to use boolean and along with grouping in guard ?
+%% is_char(C)	when is_integer(C), (($A =< C, C =< $Z); ($a =< C, C =< $z)) ->
+is_char(Code) ->
+	SmallA = 97,
+	SmallZ = 122,
+	CapitalA = 65,
+	CapitalZ = 90,
+	(Code >= SmallA andalso Code =< SmallZ)
+		orelse (Code >= CapitalA andalso Code =< CapitalZ).
+
+to_lower(C)	when is_integer(C), $A =< C, C =< $Z ->
+	C + 32;
+to_lower(C) when not is_list(C) ->
+	C;
+to_lower(S) when is_list(S) ->
+	[to_lower(C) || C <- S].
