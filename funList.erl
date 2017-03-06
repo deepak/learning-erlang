@@ -1,6 +1,7 @@
 -module(funList).
--export([double/1, evens/1, test/0]).
+-export([double/1, evens/1, take/2, test/0]).
 
+%% double
 double([]) ->
 	%% erlang:display("empty"),
 	[];
@@ -15,6 +16,7 @@ double([X|Xs]) ->
 	DoubleOfX = double(X),
 	[DoubleOfX | double(Xs)].
 
+%% evens
 evens([], Acc) ->
 	%% erlang:display(["empty with Acc", Acc]),
 	Acc;
@@ -38,6 +40,21 @@ evens(L) ->
 even(Number) ->
 	Number rem 2 =:= 0.
 
+%% take
+take(0, _, Acc) ->
+	Acc;
+take(_Num, [], Acc) ->
+	Acc;
+take(Num, [X|Xs], Acc) ->
+	%% erlang:display(["take/3", X, Acc]),
+	take(Num-1, Xs, Acc++[X]).
+
+take(0, _List) ->
+	[];
+take(Num, [X|Xs]) ->
+	%% erlang:display(["take/2", X]),
+	take(Num-1, Xs, [X]).
+
 test() ->
 	%% double
 	[] = double([]),
@@ -55,4 +72,10 @@ test() ->
 	[2] = evens([1,2]),
 	[2] = evens([2,1]),
 	[10,4,8,4,4] = evens([4,4,8,5,4,1,10,3]),
+
+	%% take
+	[] = take(0, "hello"),
+	"hell" = take(4, "hello"),
+	"hello" = take(5, "hello"),
+	"hello" = take(9, "hello"),
 	ok.
