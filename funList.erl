@@ -1,5 +1,5 @@
 -module(funList).
--export([double/1, evens/1, take/2, test/0]).
+-export([double/1, evens/1, take/2, nub/1, test/0]).
 
 %% double
 double([]) ->
@@ -55,6 +55,18 @@ take(Num, [X|Xs]) ->
 	%% erlang:display(["take/2", X]),
 	take(Num-1, Xs, [X]).
 
+%% nub
+nub([], Acc) ->
+	Acc;
+nub([X|Xs], Acc) ->
+	%% erlang:display(["nub/2", X, Xs, Acc]),
+	case lists:member(X, Acc) of
+		true -> nub(Xs, Acc);
+		false -> nub(Xs, Acc ++ [X])
+	end.
+nub(List) ->
+	nub(List, []).
+
 test() ->
 	%% double
 	[] = double([]),
@@ -78,4 +90,8 @@ test() ->
 	"hell" = take(4, "hello"),
 	"hello" = take(5, "hello"),
 	"hello" = take(9, "hello"),
+
+	%% nub
+	[2,4,1,3] = nub([2,4,1,3,3,1]),
+
 	ok.
